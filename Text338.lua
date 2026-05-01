@@ -1,5 +1,11 @@
--- CONFIG
--- getgenv().ToolCooldown = 5 🔥 cambia esto cuando quieras
+-- CONFIG DESDE FUERA 🔥
+getgenv().ToolCooldowns = getgenv().ToolCooldowns or {
+	Decoy = 30,
+	Trap = 3,
+	Speed = 5,
+	Break = 5,
+	Ghost = 60
+}
 
 -- SERVICIOS
 local Players = game:GetService("Players")
@@ -14,7 +20,8 @@ local validTools = {
 	[" Speed"] = true,
 	[" Break"] = true,
 	[" Trap"] = true,
-	[" Decoy"] = true
+	[" Decoy"] = true,
+	[" Ghost"] = true,
 }
 
 local function setup(character)
@@ -31,9 +38,10 @@ local function setup(character)
 				
 				ReplicatedStorage:WaitForChild("ActivateGear"):FireServer(cleanName)
 				
-				-- usa el getgenv aquí 🔥
-				task.wait(getgenv().ToolCooldown or 5)
+				-- 🔥 cooldown dinámico desde getgenv
+				local cd = (getgenv().ToolCooldowns and getgenv().ToolCooldowns[cleanName]) or 5
 				
+				task.wait(cd)
 				debounce[child.Name] = false
 			end)
 			
