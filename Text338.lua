@@ -1,9 +1,9 @@
 -- CONFIG DESDE FUERA 🔥
 getgenv().ToolCooldowns = getgenv().ToolCooldowns or {
 	Decoy = 30,
-	Trap = 3,
-	Speed = 5,
-	Break = 5,
+	Trap = 20,
+	Speed = 60,
+	Break = 40,
 	Ghost = 60
 }
 
